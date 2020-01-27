@@ -11,7 +11,7 @@ export const Carousel = (props: any) => {
     ? 1
     : props.itemsPerInterval;
 
-  const [stage, setStage] = React.useState(1);
+  const [interval, setInterval] = React.useState(1);
   const [intervals, setIntervals] = React.useState(1);
   const [width, setWidth] = React.useState(0);
 
@@ -23,7 +23,7 @@ export const Carousel = (props: any) => {
     setIntervals(Math.ceil(totalItems / itemsPerInterval));
   }
 
-  const getStage = (offset: any) => {
+  const getInterval = (offset: any) => {
     for (let i = 1; i <= intervals; i++) {
       if (offset < (width / intervals) * i) {
         return i;
@@ -41,7 +41,7 @@ export const Carousel = (props: any) => {
         key={i}
         style={{
           ...styles.bullet,
-          opacity: stage === i ? 0.5 : 0.1
+          opacity: interval === i ? 0.5 : 0.1
         }}
       >
         &bull;
@@ -58,7 +58,7 @@ export const Carousel = (props: any) => {
         onContentSizeChange={(w, h) => init(w)}
         onScroll={data => {
           setWidth(data.nativeEvent.contentSize.width);
-          setStage(getStage(data.nativeEvent.contentOffset.x));
+          setInterval(getInterval(data.nativeEvent.contentOffset.x));
         }}
         scrollEventThrottle={200}
         pagingEnabled
