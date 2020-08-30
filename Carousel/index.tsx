@@ -25,7 +25,7 @@ export const Carousel = (props: any) => {
 
   const getInterval = (offset: any) => {
     for (let i = 1; i <= intervals; i++) {
-      if (offset < (width / intervals) * i) {
+      if (offset+1 < (width / intervals) * i) {
         return i;
       }
       if (i == intervals) {
